@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.rabbitmq.RabbitmqApplication;
-
 @RestController
 @RequestMapping("/")
 public class RabbitmqController {
@@ -22,12 +20,16 @@ public class RabbitmqController {
   
   @GetMapping("/send/{message}")
   public ResponseEntity<String> send(@PathVariable String message) {
-      rabbitTemplate.convertAndSend(RabbitmqApplication.topicExchangeName, "foo.bar.baz", "Hello from Java RabbitMQ!");
-      
-      return new ResponseEntity<String> (
-          "Sucesso",
-          HttpStatus.OK
-      );
-  
-    }
+    rabbitTemplate.convertAndSend(
+      "ex-spring-laravel", 
+      "foo.bar.laravel", 
+      message
+    );
+    
+    return new ResponseEntity<String> (
+        "Sucesso",
+        HttpStatus.OK
+    );
+
+  }
 }

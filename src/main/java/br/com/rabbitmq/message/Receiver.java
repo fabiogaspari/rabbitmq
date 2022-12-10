@@ -14,7 +14,7 @@ public class Receiver {
 
   Logger logger = LoggerFactory.getLogger(Receiver.class);
 
-  @RabbitListener(queues = "spring-laravel")
+  @RabbitListener(queues = "laravel-spring")
   public void receiveMessage(String message) throws InterruptedException {
     logger.info(message.toString());
     System.out.println("Received <" + message + ">");

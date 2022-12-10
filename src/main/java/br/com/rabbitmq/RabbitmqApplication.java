@@ -20,38 +20,38 @@ public class RabbitmqApplication {
 
 	Logger logger = LoggerFactory.getLogger(RabbitmqApplication.class);
 
-	public static final String topicExchangeName = "ex-spring-laravel";
+	// public static final String topicExchangeName = "ex-spring-laravel";
 
-	public static final String queueName = "spring-laravel";
+	// public static final String queueName = "spring-laravel";
   
-	@Bean
-	Queue queue() {
-	  return new Queue(queueName, true);
-	}
+	// @Bean
+	// Queue queue() {
+	//   return new Queue(queueName, true);
+	// }
 	
-	@Bean
-	TopicExchange exchange() {
-	  return new TopicExchange(topicExchangeName);
-	}
+	// @Bean
+	// TopicExchange exchange() {
+	//   return new TopicExchange(topicExchangeName);
+	// }
   
-	@Bean
-	SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
-		MessageListenerAdapter listenerAdapter) {
+	// @Bean
+	// SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
+	// 	MessageListenerAdapter listenerAdapter) {
 	 
-	  SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
+	//   SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
 	  
-	  container.setConnectionFactory(connectionFactory);
-	  container.setQueueNames(queueName);
-	  container.setMessageListener(listenerAdapter);
+	//   container.setConnectionFactory(connectionFactory);
+	//   container.setQueueNames(queueName);
+	//   container.setMessageListener(listenerAdapter);
 	  
-	  return container;
-	}
+	//   return container;
+	// }
   
-	@Bean
-	MessageListenerAdapter listenerAdapter(Receiver receiver) {
-		return new MessageListenerAdapter(receiver, "receiveMessage");
-	}
-
+	// @Bean
+	// MessageListenerAdapter listenerAdapter(Receiver receiver) {
+	// 	return new MessageListenerAdapter(receiver, "receiveMessage");
+	// }
+	
 	public static void main(String[] args) throws InterruptedException {
 	  SpringApplication.run(RabbitmqApplication.class, args);
 	}
